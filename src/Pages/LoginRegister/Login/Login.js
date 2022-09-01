@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import auth from '../../../Firebase.init';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useSignInWithEmailAndPassword, useSendPasswordResetEmail } from 'react-firebase-hooks/auth';
 import LoginImg from '../../../assets/login.png';
 import SocialLogin from '../SocialLogin/SocialLogin';
+import Loading from '../../Shared/Loading/Loading';
 
 const Login = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [
         signInWithEmailAndPassword,
+        user,
         loading,
         error,
     ] = useSignInWithEmailAndPassword(auth);
@@ -22,27 +24,34 @@ const Login = () => {
     const onSubmit = async (data) => {
         const email = data?.email
         await signInWithEmailAndPassword(email, data.password);
-        fetch('https://stormy-tundra-05889.herokuapp.com/login', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify({ email })
-        })
-            .then(res => res.json())
-            .then(data => {
-                localStorage.setItem('accessToken', data.accessToken);
-                navigate(from, { replace: true });
-            });
+        // fetch('https://stormy-tundra-05889.herokuapp.com/login', {
+        //     method: 'POST',
+        //     headers: {
+        //         'content-type': 'application/json'
+        //     },
+        //     body: JSON.stringify({ email })
+        // })
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         localStorage.setItem('accessToken', data.accessToken);
+        //         navigate(from, { replace: true });
+        //     });
     };
 
+    // Navigate user
+    useEffect(() => {
+        if (user) {
+            navigate(from, { replace: true });
+        }
+    }, [user, from, navigate]);
+
     if (error) {
-        errorMessage = <p className='text-red-500 text-center'>{error?.message}</p>
+        errorMessage = <p className='text-error text-center mb-5'>{error?.message}</p>
     }
 
     // Handle Loading
     if (loading) {
-        // return <Loading />;
+        return <Loading />;
     }
 
     return (
@@ -108,7 +117,7 @@ const Login = () => {
                     <SocialLogin />
                     <div className='flex justify-between mt-5'>
                         <p className='text-center text-lg'>Don't have any account? <Link to='/registration' className='text-secondary'>Sign Up</Link></p>
-                        <p className='text-md text-error cursor-pointer'
+                        <p className='text-md text-secondary cursor-pointer'
                         >Forgot Password?</p>
                     </div>
                 </div>

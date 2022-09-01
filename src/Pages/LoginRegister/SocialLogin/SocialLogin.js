@@ -28,6 +28,13 @@ const SocialLogin = () => {
     //     }
     // }, [user, navigate, from]);
 
+    // Navigate user
+    useEffect(() => {
+        if (user) {
+            navigate(from, { replace: true });
+        }
+    }, [user, navigate, from]);
+
     // Handle loading
     if (loading) {
         // return <SocialLoader />;
@@ -35,7 +42,7 @@ const SocialLogin = () => {
 
     // Handle error
     if (error) {
-        errorMessage = <p className='text-red-500 text-center mb-2'>{error?.message}</p>
+        errorMessage = <p className='text-error text-center mb-2'>{error?.message}</p>
     }
 
     return (

@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import auth from '../../../Firebase.init';
 import RegisterImg from '../../../assets/register.png';
 import SocialLogin from '../SocialLogin/SocialLogin';
+import Loading from '../../Shared/Loading/Loading';
 
 const Register = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
@@ -21,19 +22,26 @@ const Register = () => {
         const email = data?.email;
         await createUserWithEmailAndPassword(email, data?.password);
         await updateProfile({ displayName: data?.userName });
-        fetch('https://stormy-tundra-05889.herokuapp.com/login', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify({ email })
-        })
-            .then(res => res.json())
-            .then(data => {
-                localStorage.setItem('accessToken', data.accessToken);
-                navigate(from, { replace: true });
-            });
+        // fetch('https://stormy-tundra-05889.herokuapp.com/login', {
+        //     method: 'POST',
+        //     headers: {
+        //         'content-type': 'application/json'
+        //     },
+        //     body: JSON.stringify({ email })
+        // })
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         localStorage.setItem('accessToken', data.accessToken);
+        //         navigate(from, { replace: true });
+        //     });
     };
+
+    // Navigate user
+    useEffect(() => {
+        if (user) {
+            navigate(from, { replace: true });
+        }
+    }, [user, navigate, from]);
 
     // Handle error
     if (error || hookError || updateProfileError) {
@@ -42,7 +50,7 @@ const Register = () => {
 
     // Handle loading
     if (loading || updating) {
-        // return <Loading />;
+        return <Loading />;
     };
 
 
@@ -124,7 +132,7 @@ const Register = () => {
                             </label>
                         </div>
                         <div className="form-control mt-16">
-                            <button className="btn btn-neutral">Login</button>
+                            <button className="btn btn-neutral">Registration</button>
                         </div>
                     </form>
                     <SocialLogin />
