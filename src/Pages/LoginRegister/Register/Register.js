@@ -1,27 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import auth from '../../../Firebase.init';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useSignInWithEmailAndPassword, useSendPasswordResetEmail } from 'react-firebase-hooks/auth';
-import LoginImg from '../../../assets/login.png';
+import RegisterImg from '../../../assets/register.png';
 import SocialLogin from '../SocialLogin/SocialLogin';
 
-const Login = () => {
+const Register = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
-    const [
-        signInWithEmailAndPassword,
-        loading,
-        error,
-    ] = useSignInWithEmailAndPassword(auth);
-    const [sendPasswordResetEmail] = useSendPasswordResetEmail(auth);
     let errorMessage;
+    const [createUserWithEmailAndPassword, user, loading, hookError,] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+
+    const [updateProfile, updating, updateProfileError] = useUpdateProfile(auth);
+    const [error, setError] = useState('');
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
 
     const onSubmit = async (data) => {
-        const email = data?.email
-        await signInWithEmailAndPassword(email, data.password);
+        const email = data?.email;
+        await createUserWithEmailAndPassword(email, data?.password);
+        await updateProfile({ displayName: data?.userName });
         fetch('https://stormy-tundra-05889.herokuapp.com/login', {
             method: 'POST',
             headers: {
@@ -36,26 +35,51 @@ const Login = () => {
             });
     };
 
-    if (error) {
-        errorMessage = <p className='text-red-500 text-center'>{error?.message}</p>
-    }
+    // Handle error
+    if (error || hookError || updateProfileError) {
+        errorMessage = <p className='text-error text-center'>{error?.message || hookError?.message || updateProfileError?.message}</p>
+    };
 
-    // Handle Loading
-    if (loading) {
+    // Handle loading
+    if (loading || updating) {
         // return <Loading />;
-    }
+    };
+
 
     return (
         <div className='bg-info min-h-screen grid grid-cols-2 items-center'>
             <div>
                 <div className="md:w-3/4 w-full mx-auto text-neutral">
-                    <h1 className='text-3xl mb-2'>Please Login</h1>
+                    <h1 className='text-3xl mb-2'>Registration Now</h1>
                     <span className='w-52 h-1 bg-secondary block mb-16'></span>
                     {errorMessage}
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="form-control">
-                            <span className="label-text text-xl text-neutral mb-3">Email</span>
+                            <span className="label-text text-xl text-neutral mb-3">User Name</span>
+                            <input
+                                type="text"
+                                placeholder="Ayoun Paul Neel"
+                                {...register("userName", {
+                                    required: {
+                                        value: true,
+                                        message: 'User name is required'
+                                    },
+                                    minLength: {
+                                        value: 3,
+                                        message: 'User name must be contain at least 3 characters'
+                                    }
+                                })}
+                                autoComplete='off'
+                                className="bg-transparent border-b-2 border-neutral pb-1 outline-none" />
+                            <label className="mt-1">
+                                {errors.userName?.type === 'required' && <span className="label-text-alt text-error" style={{ fontSize: '15px' }}>{errors.userName.message}</span>}
+                                {errors.userName?.type === 'pattern' && <span className="label-text-alt text-error" style={{ fontSize: '15px' }}>{errors.userName.message}</span>}
+                            </label>
 
+
+                        </div>
+                        <div className="form-control">
+                            <span className="label-text text-xl text-neutral mt-5 mb-3">Email</span>
                             <input
                                 type="text"
                                 placeholder="example@your.com"
@@ -76,8 +100,6 @@ const Login = () => {
                                 {errors.email?.type === 'required' && <span className="label-text-alt text-error" style={{ fontSize: '15px' }}>{errors.email.message}</span>}
                                 {errors.email?.type === 'pattern' && <span className="label-text-alt text-error" style={{ fontSize: '15px' }}>{errors.email.message}</span>}
                             </label>
-
-
                         </div>
                         <div className="form-control">
                             <span className="label-text text-xl text-neutral mt-5 mb-3">Password</span>
@@ -106,18 +128,14 @@ const Login = () => {
                         </div>
                     </form>
                     <SocialLogin />
-                    <div className='flex justify-between mt-5'>
-                        <p className='text-center text-lg'>Don't have any account? <Link to='/registration' className='text-secondary'>Sign Up</Link></p>
-                        <p className='text-md text-error cursor-pointer'
-                        >Forgot Password?</p>
-                    </div>
+                    <p className='text-center text-lg mt-5'>Already have an account? <Link to='/login' className='text-secondary'>Login</Link></p>
                 </div>
             </div>
             <div className='p-20 w-full mx-auto'>
-                <img src={LoginImg} alt="" />
+                <img src={RegisterImg} alt="" />
             </div>
         </div>
     )
 }
 
-export default Login;
+export default Register;
