@@ -33,7 +33,7 @@ const Header = () => {
                 <div className='dropdown dropdown-end'>
                     {user ? <div className='dropdown dropdown-end'>
                         <label tabIndex="0" className="avatar">
-                            <div className="w-8 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 cursor-pointer">
+                            <div className="w-10 rounded-full border-4 border-secondary cursor-pointer">
                                 <img src={(user?.photoURL) || 'https://thumbs.dreamstime.com/b/default-avatar-profile-flat-icon-social-media-user-vector-portrait-unknown-human-image-default-avatar-profile-flat-icon-184330869.jpg'} />
                             </div>
                         </label>
