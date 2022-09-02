@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 
 const RecentProject = () => {
     return (
-        <div className='min-h-screen px-20'>
+        <div className='px-40'>
             <div className='text-center'>
                 <h1 data-aos="fade-up"
                     data-aos-anchor-placement="top-bottom"
@@ -16,7 +16,7 @@ const RecentProject = () => {
                 <img className='w-1/6 mt-2 mx-auto' src={UnderlineImg} alt="" />
             </div>
 
-            <div className='grid grid-cols-3 gap-6 mt-20'>
+            <div className='grid grid-cols-3 gap-6 my-20'>
                 <div className='card cus-card w-full rounded-none'>
                     <img className='image' src={Img1} alt="" />
                     <div className='behind'>

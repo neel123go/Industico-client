@@ -1,0 +1,22 @@
+.text {
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 14px;
+}
+
+.custom-card {
+    overflow: hidden;
+}
+
+.custom-card .image {
+    transition: transform 1s, filter 1s ease-in-out;
+    transform-origin: center center;
+    filter: brightness(40%);
+    position: relative;
+}
+
+.custom-card:hover .image {
+    transform: scale(1.2);
+}
