@@ -3,6 +3,7 @@ import Home from './Pages/Home/Home';
 import { Route, Routes } from 'react-router-dom';
 import Login from "./Pages/LoginRegister/Login/Login";
 import Register from "./Pages/LoginRegister/Register/Register";
+import Footer from "./Pages/Shared/Footer/Footer";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/registration" element={<Register />} />
       </Routes>
+      <Footer />
     </>
   );
 }

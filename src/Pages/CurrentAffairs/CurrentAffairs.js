@@ -40,7 +40,7 @@ const CurrentAffairs = () => {
 
                 <div className='w-[70%] grid grid-cols-2 gap-5 pl-10'>
                     <div className='card custom-card w-full rounded-none'>
-                        <img className='image h-[57vh]' src='https://industico.preyantechnosys.com/wp-content/uploads/2022/05/portfolio-02-610x430.jpg' alt="" />
+                        <img className='image h-[57vh]' src='https://industico.preyantechnosys.com/wp-content/uploads/2022/05/02-1.jpg' alt="" />
                         <div className='text px-5 text-md'>
                             <p className='mb-2 border-b border-slate-300 pb-4'>The 9 Best Guideline For The Industry And Petrolium And Oil Refinery</p>
                             <div className='flex justify-between text-sm'>
