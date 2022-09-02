@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import UnderlineImg from '../../assets/underline.png';
-import Img1 from '../../assets/tools/matthias-haltenhof-fkNH-57nen8-unsplash.jpg';
-import Img2 from '../../assets/tools/nick-van-der-ende-VYfxkePredI-unsplash.jpg';
-import Img3 from '../../assets/tools/patrick-pahlke-0kwAZN1hzGI-unsplash.jpg';
-import Img4 from '../../assets/tools/possessed-photography-nuc3NFB_6po-unsplash.jpg';
+import Img1 from '../../assets/tools/case.jpg';
+import Img2 from '../../assets/tools/computer-hard-disk-drive-stariz-pk.jpg';
+import Img3 from '../../assets/tools/mouse.jpg';
+import Img4 from '../../assets/tools/webcam.jpg';
 
 const Tools = () => {
     return (
@@ -12,7 +12,7 @@ const Tools = () => {
             <div className='text-center'>
                 <h1 data-aos="fade-up"
                     data-aos-anchor-placement="top-bottom"
-                    data-aos-duration="1000" className='md:text-4xl text-3xl text-base-100 font-bold md:pt-20 pt-10 cus-font'>Our Manufacturer Tools</h1>
+                    data-aos-duration="1000" className='md:text-4xl text-3xl text-base-100 font-bold md:pt-20 pt-10 cus-font'>Our <span className='text-secondary'>Manufacturer</span> Tools</h1>
                 <img className='w-1/6 mt-2 mx-auto' src={UnderlineImg} alt="" />
             </div>
 

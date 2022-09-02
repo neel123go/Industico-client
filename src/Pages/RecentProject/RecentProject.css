@@ -1,0 +1,33 @@
+.behind {
+    display: none;
+    color: white;
+    font-size: 20px;
+}
+
+.cus-card {
+    overflow: hidden;
+}
+
+.image {
+    transition: transform 1s, filter 1s ease-in-out;
+    transform-origin: center center;
+    filter: brightness(100%);
+    position: relative;
+}
+
+.cus-card:hover .image {
+    filter: brightness(25%);
+    transform: scale(1.2);
+}
+
+.behind {
+    transition: transform 1s, filter 1.5s ease-in-out;
+}
+
+.cus-card:hover .behind {
+    display: inline;
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 14px;
+    margin-left: 20px;
+}
