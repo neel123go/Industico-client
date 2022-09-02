@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 
 const RecentProject = () => {
     return (
-        <div className='min-h-screen px-20 border-t border-slate-600'>
+        <div className='min-h-screen px-20'>
             <div className='text-center'>
                 <h1 data-aos="fade-up"
                     data-aos-anchor-placement="top-bottom"
@@ -16,8 +16,8 @@ const RecentProject = () => {
                 <img className='w-1/6 mt-2 mx-auto' src={UnderlineImg} alt="" />
             </div>
 
-            <div className='grid grid-cols-3 gap-10 mt-20'>
-                <div className='card cus-card w-full'>
+            <div className='grid grid-cols-3 gap-6 mt-20'>
+                <div className='card cus-card w-full rounded-none'>
                     <img className='image' src={Img1} alt="" />
                     <div className='behind'>
                         <p className='mb-2'>Industrial Complex</p>
@@ -30,7 +30,7 @@ const RecentProject = () => {
                         </Link>
                     </div>
                 </div>
-                <div className='card cus-card w-full'>
+                <div className='card cus-card w-full rounded-none'>
                     <img className='image' src={Img2} alt="" />
                     <div className='behind'>
                         <p className='mb-2'>Industrial Complex</p>
@@ -43,7 +43,7 @@ const RecentProject = () => {
                         </Link>
                     </div>
                 </div>
-                <div className='card cus-card w-full'>
+                <div className='card cus-card w-full rounded-none'>
                     <img className='image' src={Img3} alt="" />
                     <div className='behind'>
                         <p className='mb-2'>Industrial Complex</p>

@@ -3,7 +3,7 @@ import UnderlineImg from '../../assets/underline.png';
 
 const BusinessSummary = () => {
     return (
-        <div className='px-40 bg-info border-t border-slate-600'>
+        <div className='px-40 bg-info'>
             <div className='text-center'>
                 <h1 data-aos="fade-up"
                     data-aos-anchor-placement="top-bottom"
@@ -11,7 +11,7 @@ const BusinessSummary = () => {
                 <img className='w-1/6 mt-2 mx-auto' src={UnderlineImg} alt="" />
             </div>
 
-            <div className='grid grid-cols-3 gap-16 pt-20 pb-32'>
+            <div className='grid grid-cols-3 gap-6 pt-20 pb-32'>
                 <div class="rounded-xl text-neutral border border-slate-700 py-5">
                     <div class="card-body text-center">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-20 h-20 text-secondary mx-auto">
