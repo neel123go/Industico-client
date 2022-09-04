@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import auth from '../../Firebase.init';
 import RegisterImg from '../../assets/user.png';
 
@@ -11,23 +11,13 @@ export const Purchase = () => {
     const [qty, setQty] = useState('');
     const [message, setMessage] = useState('');
     const [user] = useAuthState(auth);
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetch(`http://localhost:5000/items/${id}`)
             .then(res => res.json())
             .then(data => setTool(data));
     }, [tool, id]);
-
-    // useEffect(() => {
-    //     if (user) {
-    //         const userEmail = user?.email;
-    //         fetch(`http://localhost:5000/user/${userEmail}`)
-    //             .then(res => res.json())
-    //             .then(data => {
-    //                 console.log(data);
-    //             })
-    //     }
-    // }, [user]);
 
     const { register, formState: { errors }, handleSubmit } = useForm();
 
@@ -68,7 +58,9 @@ export const Purchase = () => {
                     })
                         .then(res => res.json())
                         .then(data => {
-                            console.log(data);
+                            if (data?.insertedId) {
+                                navigate('/dashboard');
+                            }
                         })
                 }
             });
@@ -149,7 +141,7 @@ export const Purchase = () => {
                                 <div className="form-control">
                                     <span className="label-text text-xl text-neutral mt-5 mb-3">phone</span>
                                     <input
-                                        type="text"
+                                        type="number"
                                         placeholder="017318323##"
                                         {...register("number", {
                                             required: {

@@ -15,25 +15,25 @@ const CurrentAffairs = () => {
 
             <div className='flex justify-center items-center py-20'>
                 <div className='w-[30%] px-5 bg-neutral'>
-                    <div class="flex items-center">
+                    <div className="flex items-center">
                         <figure className='w-40'><img src="https://industico.preyantechnosys.com/wp-content/uploads/2022/05/02-1-85x85.jpg" alt="Movie" /></figure>
-                        <div class="card-body pl-4">
+                        <div className="card-body pl-4">
                             <p className='text-sm text-primary'>20 May, 2022</p>
-                            <Link to='' class="hover:text-primary text-md">{`A Reflecting on 2022 global LNG and European pipeline`.slice(0, 45) + '..'}</Link>
+                            <Link to='' className="hover:text-primary text-md">{`A Reflecting on 2022 global LNG and European pipeline`.slice(0, 45) + '..'}</Link>
                         </div>
                     </div>
-                    <div class="flex items-center border-t border-slate-400">
+                    <div className="flex items-center border-t border-slate-400">
                         <figure className='w-40'><img src="https://industico.preyantechnosys.com/wp-content/uploads/2022/05/06-85x85.jpg" alt="Movie" /></figure>
-                        <div class="card-body pl-4">
+                        <div className="card-body pl-4">
                             <p className='text-sm text-primary'>20 May, 2022</p>
-                            <Link to='' class="hover:text-primary text-md">{`How Did The European Natural Gas Market Evolve In 2022?`.slice(0, 45) + '..'}</Link>
+                            <Link to='' className="hover:text-primary text-md">{`How Did The European Natural Gas Market Evolve In 2022?`.slice(0, 45) + '..'}</Link>
                         </div>
                     </div>
-                    <div class="flex items-center border-t border-slate-400">
+                    <div className="flex items-center border-t border-slate-400">
                         <figure className='w-40'><img src="https://industico.preyantechnosys.com/wp-content/uploads/2022/05/08-85x85.jpg" alt="Movie" /></figure>
-                        <div class="card-body pl-4">
+                        <div className="card-body pl-4">
                             <p className='text-sm text-primary'>18 May, 2022</p>
-                            <Link to='' class="hover:text-primary text-md">{`The Autonomous Plant: Entering Into A New Digital Era`.slice(0, 45) + '..'}</Link>
+                            <Link to='' className="hover:text-primary text-md">{`The Autonomous Plant: Entering Into A New Digital Era`.slice(0, 45) + '..'}</Link>
                         </div>
                     </div>
                 </div>
