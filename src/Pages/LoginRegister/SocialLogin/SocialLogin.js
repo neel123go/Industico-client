@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../../../Firebase.init';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -10,30 +10,51 @@ const SocialLogin = () => {
     let from = location.state?.from?.pathname || "/";
     let errorMessage;
 
-    // useEffect(() => {
-    //     if (user) {
-    //         const email = user.user.email;
-    //         fetch('https://stormy-tundra-05889.herokuapp.com/login', {
-    //             method: 'POST',
-    //             headers: {
-    //                 'content-type': 'application/json'
-    //             },
-    //             body: JSON.stringify({ email })
-    //         })
-    //             .then(res => res.json())
-    //             .then(data => {
-    //                 localStorage.setItem('accessToken', data.accessToken);
-    //                 navigate(from, { replace: true });
-    //             });
-    //     }
-    // }, [user, navigate, from]);
-
-    // Navigate user
     useEffect(() => {
         if (user) {
-            navigate(from, { replace: true });
+            const dbUser = {
+                email: user?.user.email,
+                userName: user?.user.displayName,
+                address: '',
+                phone: '',
+            };
+
+            fetch(`http://localhost:5000/user/${user?.user.email}`, {
+                method: 'PUT',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(dbUser)
+            })
+                .then(res => res.json())
+                .then(data => { });
+        }
+    }, [user]);
+
+    useEffect(() => {
+        if (user) {
+            const email = user.user.email;
+            fetch('https://stormy-tundra-05889.herokuapp.com/login', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify({ email })
+            })
+                .then(res => res.json())
+                .then(data => {
+                    localStorage.setItem('accessToken', data.accessToken);
+                    navigate(from, { replace: true });
+                });
         }
     }, [user, navigate, from]);
+
+    // Navigate user
+    // useEffect(() => {
+    //     if (user) {
+    //         navigate(from, { replace: true });
+    //     }
+    // }, [user, navigate, from]);
 
     // Handle loading
     if (loading) {
