@@ -11,6 +11,7 @@ import { MyProfile } from "./Pages/Dashboard/MyProfile";
 import { Toaster } from 'react-hot-toast';
 import { MyOrders } from "./Pages/Dashboard/MyOrders";
 import { CheckOut } from './Pages/Dashboard/CheckOut';
+import { AddReview } from "./Pages/Dashboard/AddReview";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
           <Route index element={<MyProfile />}></Route>
           <Route path="myOrders" element={<MyOrders />}></Route>
           <Route path="checkOut/:id" element={<CheckOut />}></Route>
+          <Route path="addReview" element={<AddReview />}></Route>
 
         </Route>
       </Routes>
