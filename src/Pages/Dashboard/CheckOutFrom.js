@@ -8,8 +8,6 @@ export const CheckOutFrom = ({ orderTool, totalPrice }) => {
     const [cardErr, setCardErr] = useState('');
     const [clientSecret, setClientSecret] = useState('');
     const [successMsg, setSuccessMsg] = useState('');
-    const [transactionId, setTransactionId] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
 
@@ -67,13 +65,29 @@ export const CheckOutFrom = ({ orderTool, totalPrice }) => {
             setCardErr(intentError?.message);
         } else {
             setCardErr('');
-            setTransactionId(paymentIntent?.id);
             setSuccessMsg('Congratulation! Your payment is successfully completed');
-        }
-    }
 
-    if (isLoading) {
-        return <Loading />
+            // Store payment data on database
+            const payment = {
+                userName: orderTool?.name,
+                userEmail: orderTool?.email,
+                toolName: orderTool?.productName,
+                transactionId: paymentIntent.id,
+                status: 'pending'
+            };
+
+            fetch(`http://localhost:5000/order/${orderTool?._id}`, {
+                method: 'PATCH',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(payment)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                })
+        }
     }
 
     return (
