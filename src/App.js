@@ -9,6 +9,8 @@ import RequireAuth from './Pages/LoginRegister/RequireAuth/RequireAuth';
 import { Dashboard } from "./Pages/Dashboard/Dashboard";
 import { MyProfile } from "./Pages/Dashboard/MyProfile";
 import { Toaster } from 'react-hot-toast';
+import { MyOrders } from "./Pages/Dashboard/MyOrders";
+import { CheckOut } from './Pages/Dashboard/CheckOut';
 
 function App() {
   return (
@@ -31,6 +33,8 @@ function App() {
           </RequireAuth>
         }>
           <Route index element={<MyProfile />}></Route>
+          <Route path="myOrders" element={<MyOrders />}></Route>
+          <Route path="checkOut/:id" element={<CheckOut />}></Route>
 
         </Route>
       </Routes>

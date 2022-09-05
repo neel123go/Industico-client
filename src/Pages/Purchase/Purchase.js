@@ -8,6 +8,7 @@ import RegisterImg from '../../assets/user.png';
 export const Purchase = () => {
     const { id } = useParams();
     const [tool, setTool] = useState({});
+    const [dbUser, setDbUser] = useState({});
     const [qty, setQty] = useState('');
     const [message, setMessage] = useState('');
     const [user] = useAuthState(auth);
@@ -18,6 +19,12 @@ export const Purchase = () => {
             .then(res => res.json())
             .then(data => setTool(data));
     }, [tool, id]);
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/user/${user?.email}`)
+            .then(res => res.json())
+            .then(data => setDbUser(data));
+    }, [user]);
 
     const { register, formState: { errors }, handleSubmit } = useForm();
 
@@ -36,7 +43,6 @@ export const Purchase = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
                 if (data.acknowledged === true) {
                     const order = {
                         name: userName,
@@ -59,7 +65,7 @@ export const Purchase = () => {
                         .then(res => res.json())
                         .then(data => {
                             if (data?.insertedId) {
-                                navigate('/dashboard');
+                                navigate('/dashboard/myOrders');
                             }
                         })
                 }
@@ -125,6 +131,7 @@ export const Purchase = () => {
                                     <span className="label-text text-xl text-neutral mt-5 mb-3">Address</span>
                                     <input
                                         type="text"
+                                        defaultValue={dbUser?.address}
                                         placeholder="Dariapara, sylhet, Bangladesh"
                                         {...register("address", {
                                             required: {
@@ -142,6 +149,7 @@ export const Purchase = () => {
                                     <span className="label-text text-xl text-neutral mt-5 mb-3">phone</span>
                                     <input
                                         type="number"
+                                        defaultValue={dbUser?.phone}
                                         placeholder="017318323##"
                                         {...register("number", {
                                             required: {

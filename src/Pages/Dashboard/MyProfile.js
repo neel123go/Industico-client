@@ -31,7 +31,6 @@ export const MyProfile = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.acknowledged === true) {
-                    // toast.success('Your profile updated successfully');
                     toast('Your profile updated successfully',
                         {
                             icon: '✅',
@@ -45,7 +44,18 @@ export const MyProfile = () => {
                         }
                     );
                 } else {
-                    toast.error('Something went wrong! Please try again');
+                    toast('Something went wrong! Please try again',
+                        {
+                            icon: '❌',
+                            style: {
+                                borderRadius: '10px',
+                                border: '1px solid #06A877',
+                                marginTop: '-2px',
+                                background: '#0B1322',
+                                color: '#fff',
+                            },
+                        }
+                    );
                 }
             })
     };
