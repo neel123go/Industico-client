@@ -75,6 +75,7 @@ export const AddProduct = () => {
                                 <input
                                     type="text"
                                     placeholder="Enter product name"
+                                    autoComplete='off'
                                     {...register("productName", {
                                         required: {
                                             value: true,
@@ -95,6 +96,7 @@ export const AddProduct = () => {
                                 <span className="label-text text-xl text-neutral mb-3 mt-8">Image</span>
                                 <input
                                     type="text"
+                                    autoComplete='off'
                                     placeholder="Enter product image link"
                                     {...register("productImage", {
                                         required: {

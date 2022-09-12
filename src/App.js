@@ -14,6 +14,8 @@ import { CheckOut } from './Pages/Dashboard/CheckOut';
 import { AddReview } from "./Pages/Dashboard/AddReview";
 import { ManageUser } from "./Pages/Dashboard/ManageUser";
 import { AddProduct } from "./Pages/Dashboard/AddProduct";
+import { ManageTools } from "./Pages/Dashboard/ManageTools";
+import { ManageOrders } from "./Pages/Dashboard/ManageOrders";
 
 function App() {
   return (
@@ -40,7 +42,9 @@ function App() {
           <Route path="checkOut/:id" element={<CheckOut />}></Route>
           <Route path="addReview" element={<AddReview />}></Route>
           <Route path="manageUser" element={<ManageUser />}></Route>
-          <Route path="addProduct" element={<AddProduct />}></Route>
+          <Route path="addTool" element={<AddProduct />}></Route>
+          <Route path="manageTools" element={<ManageTools />}></Route>
+          <Route path="manageOrders" element={<ManageOrders />}></Route>
 
         </Route>
       </Routes>
