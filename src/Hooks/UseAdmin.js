@@ -1,3 +1,6 @@
+import { signOut } from "firebase/auth";
+import auth from "../Firebase.init";
+
 const { useState, useEffect } = require("react");
 
 const useAdmin = (user) => {
@@ -10,14 +13,20 @@ const useAdmin = (user) => {
             fetch(`http://localhost:5000/admin/${userEmail}`, {
                 method: 'GET',
                 headers: {
-                    'content-type': 'application/json'
+                    'content-type': 'application/json',
+                    'authorization': `Bearer ${localStorage.getItem('accessToken')}`
                 }
             })
-                .then(res => res.json())
+                .then(res => {
+                    if (res.status === 401 || res.status === 403) {
+                        signOut(auth);
+                        localStorage.removeItem('accessToken');
+                    }
+                    return res.json();
+                })
                 .then(data => {
-                    // console.log(data)
                     setAdmin(data);
-                    // setAdminLoading(false);
+                    setAdminLoading(false);
                 });
         }
     }, [user]);

@@ -1,6 +1,8 @@
+import { signOut } from 'firebase/auth';
 import React from 'react';
 import toast from 'react-hot-toast';
 import AlertImg from '../../assets/11132.jpg';
+import auth from '../../Firebase.init';
 
 const DeleteProductModal = ({ deleteProduct, path }) => {
     const { _id } = deleteProduct;
@@ -8,10 +10,17 @@ const DeleteProductModal = ({ deleteProduct, path }) => {
         fetch(`http://localhost:5000/${path}/${_id}`, {
             method: 'DELETE',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                'authorization': `Bearer ${localStorage.getItem('accessToken')}`
             }
         })
-            .then(res => res.json())
+            .then(res => {
+                if (res.status === 401 || res.status === 403) {
+                    signOut(auth);
+                    localStorage.removeItem('accessToken');
+                }
+                return res.json();
+            })
             .then(data => {
                 if (data.deletedCount > 0) {
                     toast('Product deleted successfully',
@@ -48,8 +57,8 @@ const DeleteProductModal = ({ deleteProduct, path }) => {
             <div className="modal bg-transparent">
                 <div className="modal-box bg-base-100">
                     <div className='flex justify-end'>
-                        <label htmlFor="delete-product-modal" className='bg-slate-200 rounded-full w-10 h-10 flex justify-center items-center cursor-pointer'><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-primary">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        <label htmlFor="delete-product-modal" className='bg-slate-200 rounded-full w-10 h-10 flex justify-center items-center cursor-pointer'><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6 text-primary">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                         </svg>
                         </label>
                     </div>

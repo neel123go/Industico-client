@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
 import auth from '../../Firebase.init';
 import RegisterImg from '../../assets/user.png';
+import { signOut } from 'firebase/auth';
 
 export const Purchase = () => {
     const { id } = useParams();
@@ -58,11 +59,18 @@ export const Purchase = () => {
                     fetch('http://localhost:5000/order', {
                         method: 'POST',
                         headers: {
-                            'content-type': 'application/json'
+                            'content-type': 'application/json',
+                            'authorization': `Bearer ${localStorage.getItem('accessToken')}`
                         },
                         body: JSON.stringify(order)
                     })
-                        .then(res => res.json())
+                        .then(res => {
+                            if (res.status === 401 || res.status === 403) {
+                                signOut(auth);
+                                localStorage.removeItem('accessToken');
+                            }
+                            return res.json();
+                        })
                         .then(data => {
                             if (data?.insertedId) {
                                 navigate('/dashboard/myOrders');

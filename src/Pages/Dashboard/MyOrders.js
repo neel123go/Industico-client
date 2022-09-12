@@ -1,3 +1,4 @@
+import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
@@ -8,8 +9,19 @@ export const MyOrders = () => {
     const [user] = useAuthState(auth);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/order/${user?.email}`)
-            .then(res => res.json())
+        fetch(`http://localhost:5000/order/${user?.email}`, {
+            method: 'GET',
+            headers: {
+                'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+            .then(res => {
+                if (res.status === 401 || res.status === 403) {
+                    signOut(auth);
+                    localStorage.removeItem('accessToken');
+                }
+                return res.json();
+            })
             .then(data => setTools(data));
     }, [user, tools]);
 
@@ -19,12 +31,19 @@ export const MyOrders = () => {
             fetch(`http://localhost:5000/order/${id}`, {
                 method: 'DELETE',
                 headers: {
-                    'content-type': 'application/json'
+                    'content-type': 'application/json',
+                    'authorization': `Bearer ${localStorage.getItem('accessToken')}`
                 }
             })
-                .then(res => res.json())
+                .then(res => {
+                    if (res.status === 401 || res.status === 403) {
+                        signOut(auth);
+                        localStorage.removeItem('accessToken');
+                    }
+                    return res.json();
+                })
                 .then(data => {
-                    console.log(data)
+                    // console.log(data)
                 })
         }
     }

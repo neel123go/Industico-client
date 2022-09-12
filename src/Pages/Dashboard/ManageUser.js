@@ -1,18 +1,34 @@
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
+import auth from '../../Firebase.init';
+import { signOut } from 'firebase/auth';
 
 export const ManageUser = () => {
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/user')
-            .then(res => res.json())
+        fetch('http://localhost:5000/user', {
+            method: 'GET',
+            headers: {
+                'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+            .then(res => {
+                if (res.status === 401 || res.status === 403) {
+                    // signOut(auth);
+                    localStorage.removeItem('accessToken');
+                }
+                return res.json();
+            })
             .then(data => setUsers(data));
     }, [users]);
 
     const makeAdmin = (email) => {
         fetch(`http://localhost:5000/user/admin/${email}`, {
-            method: 'PUT'
+            method: 'PUT',
+            headers: {
+                'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            }
         })
             .then(res => {
                 if (res.status === 403) {
@@ -50,9 +66,9 @@ export const ManageUser = () => {
 
     return (
         <div className='w-full p-10 h-full '>
-            <h1 className='text-3xl mb-2 text-neutral'>My Orders</h1>
+            <h1 className='text-3xl mb-2 text-neutral'>Manage User</h1>
             <span className='w-52 h-1 bg-secondary block mb-16'></span>
-            <table className="table w-full">
+            {users?.length > 0 ? <table className="table w-full">
                 <thead className='text-center text-neutral rounded-lg bg-info border border-secondary' >
                     <tr className=''>
                         <th className='bg-info'>No</th>
@@ -62,8 +78,8 @@ export const ManageUser = () => {
                     </tr>
                 </thead>
                 <tbody className='text-center text-neutral rounded-lg bg-info border border-secondary'>
-                    {users.map(user => <tr key={user?._id}>
-                        <td className='bg-info'>{users.indexOf(user) + 1}</td>
+                    {users?.map(user => <tr key={user?._id}>
+                        <td className='bg-info'>{users?.indexOf(user) + 1}</td>
                         <td className='bg-info'>{user?.userName}</td>
                         <td className='bg-info'>{user?.email}</td>
                         <th className='bg-info'>
@@ -72,7 +88,7 @@ export const ManageUser = () => {
                     </tr>)
                     }
                 </tbody>
-            </table>
+            </table> : 'No user found'}
         </div>
     );
 };

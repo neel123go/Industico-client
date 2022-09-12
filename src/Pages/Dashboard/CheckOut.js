@@ -4,6 +4,8 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { CheckOutFrom } from './CheckOutFrom';
 import Loading from '../Shared/Loading/Loading';
+import { signOut } from 'firebase/auth';
+import auth from '../../Firebase.init';
 
 const stripePromise = loadStripe('pk_test_51L0k6GABT6F4bUNXZRqu1uksgYfGD6jRTTLQzu13Lwj2ht3vFBtijx1NCinU0P0ILDuwcdkKLvJdJ4vNAmBg9dPT00nw0GGha5');
 
@@ -16,10 +18,17 @@ export const CheckOut = () => {
         fetch(`http://localhost:5000/orders/${id}`, {
             method: 'GET',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                'authorization': `Bearer ${localStorage.getItem('accessToken')}`
             }
         })
-            .then(res => res.json())
+            .then(res => {
+                if (res.status === 401 || res.status === 403) {
+                    signOut(auth);
+                    localStorage.removeItem('accessToken');
+                }
+                return res.json();
+            })
             .then(data => {
                 setOrderTool(data)
                 setIsLoading(false);

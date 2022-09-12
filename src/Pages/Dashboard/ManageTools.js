@@ -35,15 +35,15 @@ export const ManageTools = () => {
                     {tools.map(tool => <tr key={tool?._id}>
                         <td className='bg-info'>{tools.indexOf(tool) + 1}</td>
                         <td className='bg-info'>
-                            <div class="flex items-center text-left space-x-3">
-                                <div class="avatar">
-                                    <div class="mask mask-squircle w-12 h-12">
+                            <div className="flex items-center text-left space-x-3">
+                                <div className="avatar">
+                                    <div className="mask mask-squircle w-12 h-12">
                                         <img src={tool?.image} alt="Product Image" />
                                     </div>
                                 </div>
                                 <div>
-                                    <div class="font-bold">{tool?.name}</div>
-                                    <div class="text-sm opacity-50">ID: {tool?._id}</div>
+                                    <div className="font-bold">{tool?.name}</div>
+                                    <div className="text-sm opacity-50">ID: {tool?._id}</div>
                                 </div>
                             </div>
                         </td>

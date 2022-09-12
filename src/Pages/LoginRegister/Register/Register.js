@@ -24,7 +24,6 @@ const Register = () => {
         await updateProfile({ displayName: data?.userName });
         const user = { userName: data?.userName, email };
 
-
         fetch(`http://localhost:5000/user/${email}`, {
             method: 'PUT',
             headers: {
@@ -35,28 +34,19 @@ const Register = () => {
             .then(res => res.json())
             .then(data => { });
 
-
-
-        // fetch('https://stormy-tundra-05889.herokuapp.com/login', {
-        //     method: 'POST',
-        //     headers: {
-        //         'content-type': 'application/json'
-        //     },
-        //     body: JSON.stringify({ email })
-        // })
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         localStorage.setItem('accessToken', data.accessToken);
-        //         navigate(from, { replace: true });
-        //     });
+        fetch('http://localhost:5000/login', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({ email })
+        })
+            .then(res => res.json())
+            .then(data => {
+                localStorage.setItem('accessToken', data.accessToken);
+                navigate(from, { replace: true });
+            });
     };
-
-    // Navigate user
-    useEffect(() => {
-        if (user) {
-            navigate(from, { replace: true });
-        }
-    }, [user, navigate, from]);
 
     // Handle error
     if (error || hookError || updateProfileError) {

@@ -1,6 +1,7 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
+import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
-import Loading from '../Shared/Loading/Loading';
+import auth from '../../Firebase.init';
 
 export const CheckOutFrom = ({ orderTool, totalPrice }) => {
     const stripe = useStripe();
@@ -14,11 +15,18 @@ export const CheckOutFrom = ({ orderTool, totalPrice }) => {
         fetch('http://localhost:5000/create-payment-intent', {
             method: 'POST',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                'authorization': `Bearer ${localStorage.getItem('accessToken')}`
             },
             body: JSON.stringify({ totalPrice })
         })
-            .then(res => res.json())
+            .then(res => {
+                if (res.status === 401 || res.status === 403) {
+                    signOut(auth);
+                    localStorage.removeItem('accessToken');
+                }
+                return res.json();
+            })
             .then(data => {
                 if (data?.clientSecret) {
                     setClientSecret(data?.clientSecret);
@@ -79,13 +87,20 @@ export const CheckOutFrom = ({ orderTool, totalPrice }) => {
             fetch(`http://localhost:5000/order/${orderTool?._id}`, {
                 method: 'PATCH',
                 headers: {
-                    'content-type': 'application/json'
+                    'content-type': 'application/json',
+                    'authorization': `Bearer ${localStorage.getItem('accessToken')}`
                 },
                 body: JSON.stringify(payment)
             })
-                .then(res => res.json())
+                .then(res => {
+                    if (res.status === 401 || res.status === 403) {
+                        signOut(auth);
+                        localStorage.removeItem('accessToken');
+                    }
+                    return res.json();
+                })
                 .then(data => {
-                    console.log(data);
+                    // console.log(data);
                 })
         }
     }

@@ -34,7 +34,7 @@ const SocialLogin = () => {
     useEffect(() => {
         if (user) {
             const email = user.user.email;
-            fetch('https://stormy-tundra-05889.herokuapp.com/login', {
+            fetch('http://localhost:5000/login', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
@@ -48,13 +48,6 @@ const SocialLogin = () => {
                 });
         }
     }, [user, navigate, from]);
-
-    // Navigate user
-    // useEffect(() => {
-    //     if (user) {
-    //         navigate(from, { replace: true });
-    //     }
-    // }, [user, navigate, from]);
 
     // Handle loading
     if (loading) {

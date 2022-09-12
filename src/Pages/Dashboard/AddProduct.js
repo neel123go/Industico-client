@@ -1,7 +1,8 @@
+import { signOut } from 'firebase/auth';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import addProductImg from '../../assets/add_product.png';
+import auth from '../../Firebase.init';
 
 export const AddProduct = () => {
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
@@ -21,10 +22,17 @@ export const AddProduct = () => {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
+                'authorization': `Bearer ${localStorage.getItem('accessToken')}`
             },
             body: JSON.stringify(item)
         })
-            .then(res => res.json())
+            .then(res => {
+                if (res.status === 401 || res.status === 403) {
+                    signOut(auth);
+                    localStorage.removeItem('accessToken');
+                }
+                return res.json();
+            })
             .then(toolInserted => {
                 if (toolInserted.insertedId) {
                     toast('Product added successfully',

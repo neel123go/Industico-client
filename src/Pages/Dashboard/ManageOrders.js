@@ -1,7 +1,9 @@
+import { signOut } from 'firebase/auth';
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
+import auth from '../../Firebase.init';
 import DeleteProductModal from './DeleteProductModal';
 
 export const ManageOrders = () => {
@@ -9,8 +11,19 @@ export const ManageOrders = () => {
     const [deleteProduct, setDeleteProduct] = useState(null);
 
     useEffect(() => {
-        fetch('http://localhost:5000/orders')
-            .then(res => res.json())
+        fetch('http://localhost:5000/orders', {
+            method: 'GET',
+            headers: {
+                'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+            .then(res => {
+                if (res.status === 401 || res.status === 403) {
+                    signOut(auth);
+                    localStorage.removeItem('accessToken');
+                }
+                return res.json();
+            })
             .then(data => setOrders(data));
     }, [orders]);
 
@@ -24,11 +37,18 @@ export const ManageOrders = () => {
         fetch(`http://localhost:5000/order/${id}`, {
             method: 'PATCH',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                'authorization': `Bearer ${localStorage.getItem('accessToken')}`
             },
             body: JSON.stringify(payment)
         })
-            .then(res => res.json())
+            .then(res => {
+                if (res.status === 401 || res.status === 403) {
+                    signOut(auth);
+                    localStorage.removeItem('accessToken');
+                }
+                return res.json();
+            })
             .then(data => {
                 if (data.modifiedCount > 0) {
                     toast('Payment status updated',
@@ -79,22 +99,22 @@ export const ManageOrders = () => {
                     {orders.map(order => <tr key={order?._id}>
                         <td className='bg-info'>{orders.indexOf(order) + 1}</td>
                         <td className='bg-info'>
-                            <div class="flex items-center text-left space-x-3">
-                                <div class="avatar">
-                                    <div class="mask mask-squircle w-12 h-12">
+                            <div className="flex items-center text-left space-x-3">
+                                <div className="avatar">
+                                    <div className="mask mask-squircle w-12 h-12">
                                         <img src={order?.productImage} alt="Product Image" />
                                     </div>
                                 </div>
                                 <div>
-                                    <div class="font-bold">{order?.productName}</div>
-                                    <div class="text-sm opacity-50">ID: {order?._id}</div>
+                                    <div className="font-bold">{order?.productName}</div>
+                                    <div className="text-sm opacity-50">ID: {order?._id}</div>
                                 </div>
                             </div>
                         </td>
                         <td className='bg-info'>
                             <div className='text-left'>
-                                <div class="font-bold">{order?.name}</div>
-                                <div class="text-sm opacity-50">{order?.email}</div>
+                                <div className="font-bold">{order?.name}</div>
+                                <div className="text-sm opacity-50">{order?.email}</div>
                             </div>
                         </td>
                         <td className='bg-info'>

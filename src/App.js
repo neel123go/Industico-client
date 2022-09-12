@@ -16,6 +16,8 @@ import { ManageUser } from "./Pages/Dashboard/ManageUser";
 import { AddProduct } from "./Pages/Dashboard/AddProduct";
 import { ManageTools } from "./Pages/Dashboard/ManageTools";
 import { ManageOrders } from "./Pages/Dashboard/ManageOrders";
+import RequireAdmin from './Pages/LoginRegister/RequireAdmin/RequireAdmin';
+import RequireNormalUser from './Pages/LoginRegister/RequireNormalUser/RequireNormalUser';
 
 function App() {
   return (
@@ -38,13 +40,37 @@ function App() {
           </RequireAuth>
         }>
           <Route index element={<MyProfile />}></Route>
-          <Route path="myOrders" element={<MyOrders />}></Route>
+          <Route path="myOrders" element={
+            <RequireNormalUser>
+              <MyOrders />
+            </RequireNormalUser>
+          }></Route>
           <Route path="checkOut/:id" element={<CheckOut />}></Route>
-          <Route path="addReview" element={<AddReview />}></Route>
-          <Route path="manageUser" element={<ManageUser />}></Route>
-          <Route path="addTool" element={<AddProduct />}></Route>
-          <Route path="manageTools" element={<ManageTools />}></Route>
-          <Route path="manageOrders" element={<ManageOrders />}></Route>
+          <Route path="addReview" element={
+            <RequireNormalUser>
+              <AddReview />
+            </RequireNormalUser>
+          }></Route>
+          <Route path="manageUser" element={
+            <RequireAdmin>
+              <ManageUser />
+            </RequireAdmin>
+          }></Route>
+          <Route path="addTool" element={
+            <RequireAdmin>
+              <AddProduct />
+            </RequireAdmin>
+          }></Route>
+          <Route path="manageTools" element={
+            <RequireAdmin>
+              <ManageTools />
+            </RequireAdmin>
+          }></Route>
+          <Route path="manageOrders" element={
+            <RequireAdmin>
+              <ManageOrders />
+            </RequireAdmin>
+          }></Route>
 
         </Route>
       </Routes>
