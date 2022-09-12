@@ -51,8 +51,8 @@ export const ManageTools = () => {
                         <td className='bg-info'>
                             <p>{tool?.description.slice(0, 50) + '...'}</p>
                         </td>
-                        <td className='bg-info'>${tool?.minQty}</td>
-                        <td className='bg-info'>${tool?.availableQty}</td>
+                        <td className='bg-info'>{tool?.availableQty}</td>
+                        <td className='bg-info'>{tool?.minQty}</td>
                         <th className='bg-info'>
                             <label onClick={() => setDeleteProduct(tool)} htmlFor="delete-product-modal" className="btn h-1 modal-button w-24 rounded-lg btn-error">Delete</label>
                         </th>
@@ -60,7 +60,7 @@ export const ManageTools = () => {
                     }
                 </tbody>
             </table> : <p className='text-2xl text-neutral'>Sorry 😞, You don't have any tools</p>}
-            {deleteProduct && <DeleteProductModal deleteProduct={deleteProduct}></DeleteProductModal>}
+            {deleteProduct && <DeleteProductModal path="items" deleteProduct={deleteProduct}></DeleteProductModal>}
         </div>
     );
 };
