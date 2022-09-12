@@ -1,15 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import UnderlineImg from '../../assets/underline.png';
+import Loading from '../../Pages/Shared/Loading/Loading';
 import { Tool } from '../../Components/Tool';
 
 export const OurTools = () => {
     const [tools, setTools] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
+        setIsLoading(true);
         fetch('http://localhost:5000/items')
             .then(res => res.json())
-            .then(data => setTools(data))
+            .then(data => {
+                setTools(data)
+                setIsLoading(false)
+            })
     }, []);
+
+    if (isLoading) {
+        return <Loading />
+    }
 
     return (
         <div className='bg-info border-t border-slate-600 px-40'>

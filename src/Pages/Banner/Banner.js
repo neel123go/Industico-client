@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import BannerImg from '../../assets/banner.png';
 
 const Banner = () => {
@@ -15,8 +16,7 @@ const Banner = () => {
                     >INDUSTICO</h1>
 
                     <p className="py-10 text-neutral">On the Industico Manufacturer Tools website, You can find the best quality computer tools for your computer at a reasonable price. Also we deliver our product without any delivery charge</p>
-
-                    <a href='#inventoryItems' className="btn btn-outline btn-secondary">Explore Now</a>
+                    <Link to='ourTools' className="btn btn-outline btn-secondary">Explore Now</Link>
                 </div>
             </div>
         </div>

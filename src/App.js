@@ -20,6 +20,7 @@ import RequireAdmin from './Pages/LoginRegister/RequireAdmin/RequireAdmin';
 import RequireNormalUser from './Pages/LoginRegister/RequireNormalUser/RequireNormalUser';
 import { OurTools } from "./Pages/OurTools/OurTools";
 import { ContactUs } from "./Pages/ContactUs/ContactUs";
+import { AboutUs } from "./Pages/AboutUs/AboutUs";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/ourTools" element={<OurTools />} />
         <Route path="/contactUs" element={<ContactUs />} />
+        <Route path="/aboutUs" element={<AboutUs />} />
         <Route path="/registration" element={<Register />} />
         <Route path="/purchase/:id" element={
           <RequireAuth>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import ContactImg from '../../assets/contact.png';
 
 export const ContactUs = () => {
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
@@ -42,7 +43,10 @@ export const ContactUs = () => {
     return (
         <div class="hero min-h-screen bg-info text-neutral">
             <div class="hero-content grid grid-cols-2">
-                <div class="text-center lg:text-left">
+                <div class="text-center lg:text-left h-full mt-36">
+                    <div className='flex justify-center'>
+                        <img src={ContactImg} className="w-1/2" alt="" />
+                    </div>
                     <h1 className='md:text-5xl text-2xl text-center mb-10'><span className='text-secondary'>Contact </span>with us</h1>
                     <h2 className='md:text-2xl text-2xl text-center'>We'd love to here from you</h2>
                     <p class="pt-3 text-center">Whether you have a question about features, trails, pricing, or anything else, our teat is ready to answer all your questions</p>
