@@ -19,6 +19,7 @@ import { ManageOrders } from "./Pages/Dashboard/ManageOrders";
 import RequireAdmin from './Pages/LoginRegister/RequireAdmin/RequireAdmin';
 import RequireNormalUser from './Pages/LoginRegister/RequireNormalUser/RequireNormalUser';
 import { OurTools } from "./Pages/OurTools/OurTools";
+import { ContactUs } from "./Pages/ContactUs/ContactUs";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/ourTools" element={<OurTools />} />
+        <Route path="/contactUs" element={<ContactUs />} />
         <Route path="/registration" element={<Register />} />
         <Route path="/purchase/:id" element={
           <RequireAuth>

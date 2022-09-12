@@ -26,7 +26,7 @@ const Header = () => {
                     <li><Link to='/ourTools' className='hover:bg-primary hover:text-secondary'>Our Tools</Link></li>
                     <li><Link to='/contactUs' className='hover:bg-primary hover:text-secondary'>Blogs</Link></li>
                     {user ? <li><Link to='/dashboard' className='hover:bg-primary hover:text-secondary'>Dashboard</Link></li> : ''}
-                    <li><Link to='/aboutUs' className='hover:bg-primary hover:text-secondary'>Contact Us</Link></li>
+                    <li><Link to='/contactUs' className='hover:bg-primary hover:text-secondary'>Contact Us</Link></li>
                     <li><Link to='/aboutUs' className='hover:bg-primary hover:text-secondary'>About Us</Link></li>
                 </ul>
             </div>
@@ -55,7 +55,7 @@ const Header = () => {
                         <li><Link to='/ourTools' className='hover:bg-primary hover:text-secondary'>Our Tools</Link></li>
                         <li><Link to='/contactUs' className='hover:bg-primary hover:text-secondary'>Blogs</Link></li>
                         {user ? <li><Link to='/dashboard' className='hover:bg-primary hover:text-secondary'>Dashboard</Link></li> : ''}
-                        <li><Link to='/aboutUs' className='hover:bg-primary hover:text-secondary'>Contact Us</Link></li>
+                        <li><Link to='/contactUs' className='hover:bg-primary hover:text-secondary'>Contact Us</Link></li>
                         <li><Link to='/aboutUs' className='hover:bg-primary hover:text-secondary'>About Us</Link></li>
                     </ul>
                 </div>

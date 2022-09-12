@@ -47,7 +47,6 @@ export const AddProduct = () => {
                             },
                         }
                     );
-                    // setLoading(false);
                     reset();
                 } else {
                     toast('Something went wrong! Please try again',
@@ -62,7 +61,6 @@ export const AddProduct = () => {
                             },
                         }
                     );
-                    // setLoading(false);
                 }
             })
     }
