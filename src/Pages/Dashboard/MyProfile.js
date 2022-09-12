@@ -12,7 +12,7 @@ export const MyProfile = () => {
 
     useEffect(() => {
         if (user) {
-            fetch(`http://localhost:5000/user/${user?.email}`)
+            fetch(`https://fierce-escarpment-90330.herokuapp.com/user/${user?.email}`)
                 .then(res => res.json())
                 .then(data => {
                     setDbUser(data);
@@ -21,7 +21,7 @@ export const MyProfile = () => {
     }, [user]);
 
     const onSubmit = async (data) => {
-        fetch(`http://localhost:5000/user/${user?.email}`, {
+        fetch(`https://fierce-escarpment-90330.herokuapp.com/user/${user?.email}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

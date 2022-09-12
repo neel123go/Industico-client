@@ -14,7 +14,7 @@ export const ContactUs = () => {
         const message = data?.message;
         const messageInfo = { name, number, email, message };
 
-        fetch('http://localhost:5000/queries', {
+        fetch('https://fierce-escarpment-90330.herokuapp.com/queries', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

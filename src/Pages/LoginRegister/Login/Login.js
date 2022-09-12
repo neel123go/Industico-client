@@ -24,7 +24,7 @@ const Login = () => {
     const onSubmit = async (data) => {
         const email = data?.email
         await signInWithEmailAndPassword(email, data.password);
-        fetch('http://localhost:5000/login', {
+        fetch('https://fierce-escarpment-90330.herokuapp.com/login', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

@@ -11,7 +11,7 @@ export const ManageOrders = () => {
     const [deleteProduct, setDeleteProduct] = useState(null);
 
     useEffect(() => {
-        fetch('http://localhost:5000/orders', {
+        fetch('https://fierce-escarpment-90330.herokuapp.com/orders', {
             method: 'GET',
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -34,7 +34,7 @@ export const ManageOrders = () => {
             transactionId: transactionId
         };
 
-        fetch(`http://localhost:5000/order/${id}`, {
+        fetch(`https://fierce-escarpment-90330.herokuapp.com/order/${id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json',

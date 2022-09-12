@@ -15,7 +15,7 @@ export const CheckOut = () => {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/orders/${id}`, {
+        fetch(`https://fierce-escarpment-90330.herokuapp.com/orders/${id}`, {
             method: 'GET',
             headers: {
                 'content-type': 'application/json',

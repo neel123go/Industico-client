@@ -24,7 +24,7 @@ const Register = () => {
         await updateProfile({ displayName: data?.userName });
         const user = { userName: data?.userName, email };
 
-        fetch(`http://localhost:5000/user/${email}`, {
+        fetch(`https://fierce-escarpment-90330.herokuapp.com/user/${email}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -34,7 +34,7 @@ const Register = () => {
             .then(res => res.json())
             .then(data => { });
 
-        fetch('http://localhost:5000/login', {
+        fetch('https://fierce-escarpment-90330.herokuapp.com/login', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

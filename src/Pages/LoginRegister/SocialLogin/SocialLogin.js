@@ -19,7 +19,7 @@ const SocialLogin = () => {
                 phone: '',
             };
 
-            fetch(`http://localhost:5000/user/${user?.user.email}`, {
+            fetch(`https://fierce-escarpment-90330.herokuapp.com/user/${user?.user.email}`, {
                 method: 'PUT',
                 headers: {
                     'content-type': 'application/json'
@@ -34,7 +34,7 @@ const SocialLogin = () => {
     useEffect(() => {
         if (user) {
             const email = user.user.email;
-            fetch('http://localhost:5000/login', {
+            fetch('https://fierce-escarpment-90330.herokuapp.com/login', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'

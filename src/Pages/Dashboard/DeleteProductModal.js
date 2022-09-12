@@ -7,7 +7,7 @@ import auth from '../../Firebase.init';
 const DeleteProductModal = ({ deleteProduct, path }) => {
     const { _id } = deleteProduct;
     const handleCancelOrder = (id) => {
-        fetch(`http://localhost:5000/${path}/${_id}`, {
+        fetch(`https://fierce-escarpment-90330.herokuapp.com/${path}/${_id}`, {
             method: 'DELETE',
             headers: {
                 'content-type': 'application/json',

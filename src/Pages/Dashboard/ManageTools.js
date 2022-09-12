@@ -8,7 +8,7 @@ export const ManageTools = () => {
     const [tools, setTools] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/items')
+        fetch('https://fierce-escarpment-90330.herokuapp.com/items')
             .then(res => res.json())
             .then(data => {
                 setTools(data)

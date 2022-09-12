@@ -9,7 +9,7 @@ export const MyOrders = () => {
     const [user] = useAuthState(auth);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/order/${user?.email}`, {
+        fetch(`https://fierce-escarpment-90330.herokuapp.com/order/${user?.email}`, {
             method: 'GET',
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -28,7 +28,7 @@ export const MyOrders = () => {
     const deleteOrder = (id) => {
         const deleteStatus = window.confirm('Are you sure to delete this order?');
         if (deleteStatus) {
-            fetch(`http://localhost:5000/order/${id}`, {
+            fetch(`https://fierce-escarpment-90330.herokuapp.com/order/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'content-type': 'application/json',

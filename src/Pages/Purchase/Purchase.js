@@ -16,13 +16,13 @@ export const Purchase = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch(`http://localhost:5000/items/${id}`)
+        fetch(`https://fierce-escarpment-90330.herokuapp.com/items/${id}`)
             .then(res => res.json())
             .then(data => setTool(data));
     }, [tool, id]);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/user/${user?.email}`)
+        fetch(`https://fierce-escarpment-90330.herokuapp.com/user/${user?.email}`)
             .then(res => res.json())
             .then(data => setDbUser(data));
     }, [user]);
@@ -35,7 +35,7 @@ export const Purchase = () => {
         const userEmail = user?.email;
         const userName = user?.displayName;
         const quantity = qty + '';
-        fetch(`http://localhost:5000/user/${userEmail}`, {
+        fetch(`https://fierce-escarpment-90330.herokuapp.com/user/${userEmail}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -56,7 +56,7 @@ export const Purchase = () => {
                         description: tool.description,
                         quantity: (quantity ? quantity : tool.minQty)
                     };
-                    fetch('http://localhost:5000/order', {
+                    fetch('https://fierce-escarpment-90330.herokuapp.com/order', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',

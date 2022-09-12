@@ -12,7 +12,7 @@ export const CheckOutFrom = ({ orderTool, totalPrice }) => {
 
     useEffect(() => {
 
-        fetch('http://localhost:5000/create-payment-intent', {
+        fetch('https://fierce-escarpment-90330.herokuapp.com/create-payment-intent', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -84,7 +84,7 @@ export const CheckOutFrom = ({ orderTool, totalPrice }) => {
                 status: 'pending'
             };
 
-            fetch(`http://localhost:5000/order/${orderTool?._id}`, {
+            fetch(`https://fierce-escarpment-90330.herokuapp.com/order/${orderTool?._id}`, {
                 method: 'PATCH',
                 headers: {
                     'content-type': 'application/json',
