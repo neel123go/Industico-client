@@ -35,18 +35,18 @@ export const MyOrders = () => {
             <span className='w-52 h-1 bg-secondary block mb-16'></span>
             {tools?.length > 0 ? <table className="table w-full">
                 <thead>
-                    <tr>
-                        <th>Item</th>
-                        <th className='md:block hidden'>Description</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Action</th>
+                    <tr className='text-neutral border border-secondary'>
+                        <th className='bg-info'>Item</th>
+                        <th className='md:block hidden bg-info'>Description</th>
+                        <th className='bg-info'>Price</th>
+                        <th className='bg-info'>Quantity</th>
+                        <th className='bg-info'>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     {
-                        tools?.map(tool => <tr key={tool?._id}>
-                            <td>
+                        tools?.map(tool => <tr key={tool?._id} className="text-neutral border border-secondary">
+                            <td className='bg-info'>
                                 <div className="flex items-center sm:space-x-5 space-x-0">
                                     <div className="avatar">
                                         <div className="mask mask-squircle md:w-12 md:h-12 w-10 h-10">
@@ -59,10 +59,10 @@ export const MyOrders = () => {
                                     </div>
                                 </div>
                             </td>
-                            <td className='md:table-cell hidden'>{tool?.description.slice(0, 60) + '...'}</td>
-                            <td>${tool?.price}</td>
-                            <td>{tool?.quantity}</td>
-                            <th>
+                            <td className='md:table-cell hidden bg-info'>{tool?.description.slice(0, 60) + '...'}</td>
+                            <td className='bg-info'>${tool?.price}</td>
+                            <td className='bg-info'>{tool?.quantity}</td>
+                            <th className='bg-info'>
                                 {!(tool?.paid) && <button onClick={() => deleteOrder(tool._id)} className="btn btn-error btn-sm lg:table-cell hidden mr-2 w-20">Delete</button>}
                                 {(tool?.price && !tool?.paid) && <Link to={`/dashboard/checkOut/${tool._id}`}><button className="btn btn-secondary btn-sm lg:table-cell hidden w-20">Pay</button></Link>}
 
