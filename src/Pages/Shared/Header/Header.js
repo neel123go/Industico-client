@@ -23,7 +23,7 @@ const Header = () => {
             </div>
             <div className="navbar-center hidden lg:flex text-neutral">
                 <ul className="menu menu-horizontal p-0 text-lg">
-                    <li><Link to='/contactUs' className='hover:bg-primary hover:text-secondary'>Our Tools</Link></li>
+                    <li><Link to='/ourTools' className='hover:bg-primary hover:text-secondary'>Our Tools</Link></li>
                     <li><Link to='/contactUs' className='hover:bg-primary hover:text-secondary'>Blogs</Link></li>
                     {user ? <li><Link to='/dashboard' className='hover:bg-primary hover:text-secondary'>Dashboard</Link></li> : ''}
                     <li><Link to='/aboutUs' className='hover:bg-primary hover:text-secondary'>Contact Us</Link></li>
@@ -52,11 +52,11 @@ const Header = () => {
                     <label tabIndex="0" className="btn btn-ghost lg:hidden">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" color='#fcccae' /></svg>
                     </label><ul tabIndex="0" className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-primary rounded-box w-52 text-neutral">
-                        <li><a href='#inventoryItems'>Inventory Items</a></li>
-                        <li><a href='#ourFeatures'>Our Features</a></li>
-                        <li><a href='#customerReview'>Customer Benefits</a></li>
-                        <li><Link to='/contactUs'>Contact Us</Link></li>
-                        <li><Link to='/aboutUs'>About Us</Link></li>
+                        <li><Link to='/ourTools' className='hover:bg-primary hover:text-secondary'>Our Tools</Link></li>
+                        <li><Link to='/contactUs' className='hover:bg-primary hover:text-secondary'>Blogs</Link></li>
+                        {user ? <li><Link to='/dashboard' className='hover:bg-primary hover:text-secondary'>Dashboard</Link></li> : ''}
+                        <li><Link to='/aboutUs' className='hover:bg-primary hover:text-secondary'>Contact Us</Link></li>
+                        <li><Link to='/aboutUs' className='hover:bg-primary hover:text-secondary'>About Us</Link></li>
                     </ul>
                 </div>
             </div>

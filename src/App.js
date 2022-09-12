@@ -18,6 +18,7 @@ import { ManageTools } from "./Pages/Dashboard/ManageTools";
 import { ManageOrders } from "./Pages/Dashboard/ManageOrders";
 import RequireAdmin from './Pages/LoginRegister/RequireAdmin/RequireAdmin';
 import RequireNormalUser from './Pages/LoginRegister/RequireNormalUser/RequireNormalUser';
+import { OurTools } from "./Pages/OurTools/OurTools";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/ourTools" element={<OurTools />} />
         <Route path="/registration" element={<Register />} />
         <Route path="/purchase/:id" element={
           <RequireAuth>
