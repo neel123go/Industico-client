@@ -26,7 +26,7 @@ export const OurTools = () => {
                 <div className='md:mt-16 mt-10 mb-5 grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 justify-between gap-16'>
 
                     {
-                        tools ? tools?.slice(0, 6).map(tool => <Tool key={tool._id} tool={tool}></Tool>) : ''
+                        tools ? tools?.map(tool => <Tool key={tool._id} tool={tool}></Tool>) : ''
                     }
 
                 </div>
