@@ -65,9 +65,9 @@ export const ManageUser = () => {
     }
 
     return (
-        <div className='w-full p-10 h-full '>
+        <div className='w-full mb-6 md:p-10 p-5 h-full'>
             <h1 className='text-3xl mb-2 text-neutral'>Manage User</h1>
-            <span className='w-52 h-1 bg-secondary block mb-16'></span>
+            <span className='w-52 h-1 bg-secondary block md:mb-16 mb-10'></span>
             {users?.length > 0 ? <table className="table w-full">
                 <thead className='text-center text-neutral rounded-lg bg-info border border-secondary' >
                     <tr className=''>
@@ -83,7 +83,7 @@ export const ManageUser = () => {
                         <td className='bg-info'>{user?.userName}</td>
                         <td className='bg-info'>{user?.email}</td>
                         <th className='bg-info'>
-                            {user?.role !== 'admin' ? <button onClick={() => makeAdmin(user?.email)} className="btn btn-secondary btn-sm lg:table-cell hidden w-40">Make Admin</button> : <p className='text-secondary'>Admin</p>}
+                            {user?.role !== 'admin' ? <button onClick={() => makeAdmin(user?.email)} className="btn btn-secondary btn-sm table-cell w-40">Make Admin</button> : <p className='text-secondary'>Admin</p>}
                         </th>
                     </tr>)
                     }

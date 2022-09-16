@@ -61,7 +61,7 @@ export const MyProfile = () => {
     };
 
     return (
-        <div className='grid grid-cols-2 gap-20 w-full p-20 items-center'>
+        <div className='grid lg:grid-cols-2 gri-cols-1 gap-20 w-full md:p-20 p-5 items-center h-full'>
             <div className='w-full text-neutral'>
                 <img src={ProfileImg} alt="" />
             </div>
@@ -148,7 +148,7 @@ export const MyProfile = () => {
                                 {errors.number?.type === 'required' && <span className="label-text-alt text-error" style={{ fontSize: '15px' }}>{errors.number.message}</span>}
                             </label>
                         </div>
-                        <div className="form-control mt-16">
+                        <div className="form-control mt-16 lg:mb-0 mb-10">
                             <button className="btn btn-secondary">Update Profile</button>
                         </div>
                     </form>

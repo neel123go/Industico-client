@@ -42,8 +42,8 @@ export const ContactUs = () => {
 
     return (
         <div class="hero min-h-screen bg-info text-neutral">
-            <div class="hero-content grid grid-cols-2">
-                <div class="text-center lg:text-left h-full mt-36">
+            <div class="hero-content grid md:grid-cols-2 grid-cols-1">
+                <div class="text-center lg:text-left h-full md:mt-36 mt-8">
                     <div className='flex justify-center'>
                         <img src={ContactImg} className="w-1/2" alt="" />
                     </div>
@@ -51,9 +51,9 @@ export const ContactUs = () => {
                     <h2 className='md:text-2xl text-2xl text-center'>We'd love to here from you</h2>
                     <p class="pt-3 text-center">Whether you have a question about features, trails, pricing, or anything else, our teat is ready to answer all your questions</p>
                 </div>
-                <div className="hero md:mb-20 mb-10 bg-info">
+                <div className="hero md:mb-20 mb-5 bg-info">
                     <div className="hero-content w-full">
-                        <div className="card-body">
+                        <div className="card-body lg:px-10 p-0">
                             <h1 className='md:text-3xl text-2xl mb-10'><span className='text-secondary'>Get in touch </span>with us</h1>
                             {errorMessage}
                             <form onSubmit={handleSubmit(onSubmit)}>

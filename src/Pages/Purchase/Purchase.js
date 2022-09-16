@@ -95,7 +95,7 @@ export const Purchase = () => {
     return (
         <div className='lg:px-40 md:px-32 sm:px-12 px-5 md:py-20 py-5 bg-info text-neutral'>
             <div className='grid lg:grid-cols-2 grid-cols-1'>
-                <figure className='w-5/6 mx-auto flex justify-center items-center'><img src={tool?.image} alt="Movie" /></figure>
+                <figure className='lg:w-5/6 w-full mx-auto flex justify-center items-center'><img src={tool?.image} alt="Movie" /></figure>
                 <div className='lg:px-10 px-0 w-full lg:mt-0 mt-5'>
                     <p>Item Id: {tool?._id}</p>
                     <h2 className='text-3xl mt-2 font-bold'>{tool?.name}</h2>
@@ -111,73 +111,71 @@ export const Purchase = () => {
                     </div>
                 </div>
             </div>
-            <div className='mt-20'>
-                <div className='bg-info min-h-screen grid grid-cols-2 items-center border-t border-slate-400'>
-                    <div>
-                        <div className="md:w-4/5 w-full mx-auto text-neutral">
-                            <h1 className='text-3xl mb-2'>User Information</h1>
-                            <span className='w-60 h-1 bg-secondary block mb-16'></span>
-                            {message}
-                            <form onSubmit={handleSubmit(onSubmit)}>
-                                <div className="form-control">
-                                    <span className="label-text text-xl text-neutral mb-3">User Name</span>
-                                    <input
-                                        type="text"
-                                        readOnly
-                                        defaultValue={user?.displayName}
-                                        className="bg-transparent border-b-2 border-neutral pb-1 outline-none" />
-                                </div>
-                                <div className="form-control">
-                                    <span className="label-text text-xl text-neutral mt-5 mb-3">Email</span>
-                                    <input
-                                        type="text"
-                                        readOnly
-                                        defaultValue={user?.email}
-                                        className="bg-transparent border-b-2 border-neutral pb-1 outline-none" />
-                                </div>
-                                <div className="form-control">
-                                    <span className="label-text text-xl text-neutral mt-5 mb-3">Address</span>
-                                    <input
-                                        type="text"
-                                        defaultValue={dbUser?.address}
-                                        placeholder="Dariapara, sylhet, Bangladesh"
-                                        {...register("address", {
-                                            required: {
-                                                value: true,
-                                                message: 'Delivery address is required'
-                                            }
-                                        })}
-                                        autoComplete='off'
-                                        className="bg-transparent border-b-2 border-neutral pb-1 outline-none" />
-                                    <label className="mt-1">
-                                        {errors.address?.type === 'required' && <span className="label-text-alt text-error" style={{ fontSize: '15px' }}>{errors.address.message}</span>}
-                                    </label>
-                                </div>
-                                <div className="form-control">
-                                    <span className="label-text text-xl text-neutral mt-5 mb-3">phone</span>
-                                    <input
-                                        type="number"
-                                        defaultValue={dbUser?.phone}
-                                        placeholder="017318323##"
-                                        {...register("number", {
-                                            required: {
-                                                value: true,
-                                                message: 'Phone number is required'
-                                            }
-                                        })}
-                                        autoComplete='off'
-                                        className="bg-transparent border-b-2 border-neutral pb-1 outline-none" />
-                                    <label className="mt-1">
-                                        {errors.number?.type === 'required' && <span className="label-text-alt text-error" style={{ fontSize: '15px' }}>{errors.number.message}</span>}
-                                    </label>
-                                </div>
-                                <div className="form-control mt-16">
-                                    <button className="btn btn-neutral">Purchase</button>
-                                </div>
-                            </form>
-                        </div>
+            <div className='my-16'>
+                <div className='bg-info min-h-screen grid lg:grid-cols-2 grid-cols-1 items-center border-t border-slate-400'>
+                    <div className="md:w-4/5 w-full mx-auto text-neutral lg:order-1 order-2">
+                        <h1 className='text-3xl mb-2 mt-10'>User Information</h1>
+                        <span className='w-60 h-1 bg-secondary block mb-16'></span>
+                        {message}
+                        <form onSubmit={handleSubmit(onSubmit)}>
+                            <div className="form-control">
+                                <span className="label-text text-xl text-neutral mb-3">User Name</span>
+                                <input
+                                    type="text"
+                                    readOnly
+                                    defaultValue={user?.displayName}
+                                    className="bg-transparent border-b-2 border-neutral pb-1 outline-none" />
+                            </div>
+                            <div className="form-control">
+                                <span className="label-text text-xl text-neutral mt-5 mb-3">Email</span>
+                                <input
+                                    type="text"
+                                    readOnly
+                                    defaultValue={user?.email}
+                                    className="bg-transparent border-b-2 border-neutral pb-1 outline-none" />
+                            </div>
+                            <div className="form-control">
+                                <span className="label-text text-xl text-neutral mt-5 mb-3">Address</span>
+                                <input
+                                    type="text"
+                                    defaultValue={dbUser?.address}
+                                    placeholder="Dariapara, sylhet, Bangladesh"
+                                    {...register("address", {
+                                        required: {
+                                            value: true,
+                                            message: 'Delivery address is required'
+                                        }
+                                    })}
+                                    autoComplete='off'
+                                    className="bg-transparent border-b-2 border-neutral pb-1 outline-none" />
+                                <label className="mt-1">
+                                    {errors.address?.type === 'required' && <span className="label-text-alt text-error" style={{ fontSize: '15px' }}>{errors.address.message}</span>}
+                                </label>
+                            </div>
+                            <div className="form-control">
+                                <span className="label-text text-xl text-neutral mt-5 mb-3">phone</span>
+                                <input
+                                    type="number"
+                                    defaultValue={dbUser?.phone}
+                                    placeholder="017318323##"
+                                    {...register("number", {
+                                        required: {
+                                            value: true,
+                                            message: 'Phone number is required'
+                                        }
+                                    })}
+                                    autoComplete='off'
+                                    className="bg-transparent border-b-2 border-neutral pb-1 outline-none" />
+                                <label className="mt-1">
+                                    {errors.number?.type === 'required' && <span className="label-text-alt text-error" style={{ fontSize: '15px' }}>{errors.number.message}</span>}
+                                </label>
+                            </div>
+                            <div className="form-control md:mt-16 mt-8">
+                                <button className="btn btn-neutral">Purchase</button>
+                            </div>
+                        </form>
                     </div>
-                    <div className='p-10 w-full mx-auto'>
+                    <div className='lg:px-10 px-0 w-full mx-auto lg:order-2 order-1 pt-10'>
                         <img src={RegisterImg} alt="" />
                     </div>
                 </div>

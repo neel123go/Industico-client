@@ -21,7 +21,7 @@ export const OurTools = () => {
     }
 
     return (
-        <div className='bg-info border-t border-slate-600 px-40'>
+        <div className='bg-info border-t border-slate-600 lg:px-40 md:px-20 sm:px-16 px-5'>
             <div className='pb-20'>
                 <div className='md:mt-16 mt-10 mb-5 grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 justify-between gap-16'>
 

@@ -62,7 +62,7 @@ export const AddReview = () => {
             })
     }
     return (
-        <div className='grid grid-cols-2 gap-20 w-full p-20 items-center'>
+        <div className='grid lg:grid-cols-2 grid-cols-1 h-full gap-20 w-full md:p-20 p-5 items-center'>
             <div className='w-full text-neutral'>
                 <img src={reviewImg} alt="" />
             </div>
@@ -106,7 +106,7 @@ export const AddReview = () => {
                                 {errors.review?.type === 'maxLength' && <span className="label-text-alt text-error" style={{ fontSize: '15px' }}>{errors.review.message}</span>}
                             </label>
                         </div>
-                        <div className="form-control mt-16">
+                        <div className="form-control mt-16 lg:mb-0 mb-10">
                             <button className="btn btn-secondary">Add Review</button>
                         </div>
                     </form>

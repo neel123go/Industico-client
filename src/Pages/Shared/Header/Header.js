@@ -1,13 +1,15 @@
 import { signOut } from 'firebase/auth';
 import React from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Logo from '../../../assets/logo.png';
 import auth from '../../../Firebase.init';
 
 const Header = () => {
     // Get Current User
     const [user] = useAuthState(auth);
+
+    const { pathname } = useLocation();
 
     // Handle SignOut
     const handleLogout = () => {
@@ -17,8 +19,11 @@ const Header = () => {
     return (
         <div className="navbar bg-primary md:px-20 px-2 h-auto py-3">
             <div className="navbar-start">
+                {pathname.includes("dashboard") && <label htmlFor="my-drawer-2" tabIndex="0" className="btn lg:hidden btn-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h7" /></svg>
+                </label>}
                 <Link to="/" className="normal-case text-xl text-base-100">
-                    <img className='w-40' src={Logo} alt="" />
+                    <img className='sm:w-40 w-76' src={Logo} alt="" />
                 </Link>
             </div>
             <div className="navbar-center hidden lg:flex text-neutral">
@@ -37,7 +42,7 @@ const Header = () => {
                                 <img src={(user?.photoURL) || 'https://thumbs.dreamstime.com/b/default-avatar-profile-flat-icon-social-media-user-vector-portrait-unknown-human-image-default-avatar-profile-flat-icon-184330869.jpg'} />
                             </div>
                         </label>
-                        <ul tabIndex="0" className="menu menu-compact dropdown-content mt-9 p-2 shadow bg-primary rounded-box w-52 text-neutral border-2 border-secondary">
+                        <ul tabIndex="0" className="menu menu-compact dropdown-content mt-6 p-2 shadow bg-primary rounded-box w-52 text-neutral border-2 border-secondary">
                             <li className='ml-4 mt-2'>{user?.displayName}</li>
                             <li className='ml-4 my-2 cursor-pointer' onClick={handleLogout}>Logout</li>
                         </ul>
@@ -50,7 +55,8 @@ const Header = () => {
                 <div className="dropdown dropdown-end">
                     <label tabIndex="0" className="btn btn-ghost lg:hidden">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" color='#fcccae' /></svg>
-                    </label><ul tabIndex="0" className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-primary rounded-box w-52 text-neutral">
+                    </label>
+                    <ul tabIndex="0" className="menu menu-compact dropdown-content mt-6 p-2 border-2 border-secondary shadow bg-primary rounded-box w-52 text-neutral">
                         <li><Link to='/ourTools' className='hover:bg-primary hover:text-secondary'>Our Tools</Link></li>
                         {user ? <li><Link to='/dashboard' className='hover:bg-primary hover:text-secondary'>Dashboard</Link></li> : ''}
                         <li><Link to='/contactUs' className='hover:bg-primary hover:text-secondary'>Contact Us</Link></li>

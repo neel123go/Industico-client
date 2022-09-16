@@ -3,15 +3,15 @@ import UnderlineImg from '../../assets/underline.png';
 
 const BusinessSummary = () => {
     return (
-        <div className='px-40 bg-info'>
+        <div className='lg:px-40 md:px-32 px-5 bg-info'>
             <div className='text-center'>
                 <h1 data-aos="fade-up"
                     data-aos-anchor-placement="top-bottom"
                     data-aos-duration="1000" className='md:text-4xl text-3xl text-base-100 font-bold md:pt-20 pt-10 cus-font'><span className='text-secondary'>Business</span> Summary</h1>
-                <img className='w-1/6 mt-2 mx-auto' src={UnderlineImg} alt="" />
+                <img className='lg:w-1/6 md:w-2/6 w-3/6 mt-2 mx-auto' src={UnderlineImg} alt="" />
             </div>
 
-            <div className='grid grid-cols-3 gap-6 pt-20 pb-20'>
+            <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6 md:pt-20 pt-8 md:pb-20 pb-8'>
                 <div className="rounded-xl text-neutral border border-slate-700 py-5">
                     <div className="card-body text-center">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-20 h-20 text-secondary mx-auto">

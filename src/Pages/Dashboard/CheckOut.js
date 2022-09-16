@@ -51,7 +51,7 @@ export const CheckOut = () => {
                     <h2 className='text-xl text-neutral'>Price: <span className='text-secondary'>${orderTool?.price}</span></h2>
                     <p className='text-xl text-neutral'>Total Price: <span className='text-secondary'>${orderTool?.price * orderTool?.quantity}</span></p>
                 </div>
-                <div className="card flex-shrink-0 mt-5 shadow-2xl w-2/5 border border-secondary">
+                <div className="card flex-shrink-0 mt-5 shadow-2xl lg:w-2/5 md:w-3/5 md:my-0 my-10 w-full border border-secondary">
                     <div className="p-5 sm:p-10 card-body bg-info">
                         <h2 className="text-md sm:card-title text-neutral">Pay for: {orderTool?.productName}</h2>
                         <Elements stripe={stripePromise}>

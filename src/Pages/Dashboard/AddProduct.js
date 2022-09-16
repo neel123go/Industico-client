@@ -66,15 +66,14 @@ export const AddProduct = () => {
     }
 
     return (
-        <>
-            <div className='flex-row text-neutral pl-20 w-full items-start'>
+        <div className='h-full w-full mt-16'>
+            <div className='flex-row text-neutral md:pl-20 pl-5 w-full items-start'>
                 <h1 className='text-3xl mb-2'>Add Product</h1>
-                <span className='w-52 h-1 bg-secondary block mb-16'></span>
+                <span className='w-52 h-1 bg-secondary block lg:mb-16 mb-12'></span>
             </div>
-            <div className='w-full px-20 items-center text-neutral'>
+            <div className='w-full md:px-20 px-5 items-center text-neutral'>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <div className='grid grid-cols-2 gap-20'>
-
+                    <div className='grid lg:grid-cols-2 grid-cols-1 gap-20'>
                         <div>
                             <div className="form-control">
                                 <span className="label-text text-xl text-neutral mb-3">Name</span>
@@ -133,7 +132,7 @@ export const AddProduct = () => {
                             </div>
                         </div>
                         <div>
-                            <div className="form-control grid grid-cols-2 gap-10">
+                            <div className="form-control grid sm:grid-cols-2 grid-cols-1 gap-10">
                                 <div>
                                     <span className="label-text text-xl text-neutral mb-3 block">Min. Quantity</span>
                                     <input
@@ -194,11 +193,11 @@ export const AddProduct = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="form-control w-1/2 mx-auto mt-20">
+                    <div className="form-control w-1/2 mx-auto md:mt-20 mt-5 py-8">
                         <button className="btn btn-secondary">Add Product</button>
                     </div>
                 </form>
             </div >
-        </>
+        </div>
     );
 };

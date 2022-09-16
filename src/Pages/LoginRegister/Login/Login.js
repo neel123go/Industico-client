@@ -55,74 +55,71 @@ const Login = () => {
     }
 
     return (
-        <div className='bg-info min-h-screen grid grid-cols-2 items-center'>
-            <div>
-                <div className="md:w-3/4 w-full mx-auto text-neutral">
-                    <h1 className='text-3xl mb-2'>Please Login</h1>
-                    <span className='w-52 h-1 bg-secondary block mb-16'></span>
-                    {errorMessage}
-                    <form onSubmit={handleSubmit(onSubmit)}>
-                        <div className="form-control">
-                            <span className="label-text text-xl text-neutral mb-3">Email</span>
+        <div className='bg-info min-h-screen grid lg:grid-cols-2 grid-cols-1 items-center'>
+            <div className="sm:w-3/4 w-full sm:px-0 px-5 mx-auto text-neutral lg:order-1 order-2 lg:pt-20 pt-0 pb-20">
+                <h1 className='text-3xl mb-2'>Please Login</h1>
+                <span className='w-52 h-1 bg-secondary block mb-16'></span>
+                {errorMessage}
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <div className="form-control">
+                        <span className="label-text text-xl text-neutral mb-3">Email</span>
 
-                            <input
-                                type="text"
-                                placeholder="example@your.com"
-                                id="email"
-                                {...register("email", {
-                                    required: {
-                                        value: true,
-                                        message: 'Email address is required'
-                                    },
-                                    pattern: {
-                                        value: /\S+@\S+\.\S+/,
-                                        message: 'Provide a valid email'
-                                    }
-                                })}
-                                autoComplete='off'
-                                className="bg-transparent border-b-2 border-neutral pb-1 outline-none" />
-                            <label className="mt-1">
-                                {errors.email?.type === 'required' && <span className="label-text-alt text-error" style={{ fontSize: '15px' }}>{errors.email.message}</span>}
-                                {errors.email?.type === 'pattern' && <span className="label-text-alt text-error" style={{ fontSize: '15px' }}>{errors.email.message}</span>}
-                            </label>
+                        <input
+                            type="text"
+                            placeholder="example@your.com"
+                            id="email"
+                            {...register("email", {
+                                required: {
+                                    value: true,
+                                    message: 'Email address is required'
+                                },
+                                pattern: {
+                                    value: /\S+@\S+\.\S+/,
+                                    message: 'Provide a valid email'
+                                }
+                            })}
+                            autoComplete='off'
+                            className="bg-transparent border-b-2 border-neutral pb-1 outline-none" />
+                        <label className="mt-1">
+                            {errors.email?.type === 'required' && <span className="label-text-alt text-error" style={{ fontSize: '15px' }}>{errors.email.message}</span>}
+                            {errors.email?.type === 'pattern' && <span className="label-text-alt text-error" style={{ fontSize: '15px' }}>{errors.email.message}</span>}
+                        </label>
 
 
-                        </div>
-                        <div className="form-control">
-                            <span className="label-text text-xl text-neutral mt-5 mb-3">Password</span>
-                            <input
-                                type="password"
-                                placeholder="password123"
-                                {...register("password", {
-                                    required: {
-                                        value: true,
-                                        message: 'Password is required'
-                                    },
-                                    minLength: {
-                                        value: 8,
-                                        message: 'Password must be contain at least 8 characters'
-                                    }
-                                })}
-                                autoComplete='off'
-                                className="bg-transparent border-b-2 border-neutral pb-1 outline-none" />
-                            <label className="mt-1">
-                                {errors.password?.type === 'required' && <span className="label-text-alt text-error" style={{ fontSize: '15px' }}>{errors.password.message}</span>}
-                                {errors.password?.type === 'minLength' && <span className="label-text-alt text-error" style={{ fontSize: '15px' }}>{errors.password.message}</span>}
-                            </label>
-                        </div>
-                        <div className="form-control mt-16">
-                            <button className="btn btn-neutral">Login</button>
-                        </div>
-                    </form>
-                    <SocialLogin />
-                    <div className='flex justify-between mt-5'>
-                        <p className='text-center text-lg'>Don't have any account? <Link to='/registration' className='text-secondary'>Sign Up</Link></p>
-                        <p className='text-md text-secondary cursor-pointer'
-                        >Forgot Password?</p>
                     </div>
+                    <div className="form-control">
+                        <span className="label-text text-xl text-neutral mt-5 mb-3">Password</span>
+                        <input
+                            type="password"
+                            placeholder="password123"
+                            {...register("password", {
+                                required: {
+                                    value: true,
+                                    message: 'Password is required'
+                                },
+                                minLength: {
+                                    value: 8,
+                                    message: 'Password must be contain at least 8 characters'
+                                }
+                            })}
+                            autoComplete='off'
+                            className="bg-transparent border-b-2 border-neutral pb-1 outline-none" />
+                        <label className="mt-1">
+                            {errors.password?.type === 'required' && <span className="label-text-alt text-error" style={{ fontSize: '15px' }}>{errors.password.message}</span>}
+                            {errors.password?.type === 'minLength' && <span className="label-text-alt text-error" style={{ fontSize: '15px' }}>{errors.password.message}</span>}
+                        </label>
+                    </div>
+                    <div className="form-control mt-16">
+                        <button className="btn btn-neutral">Login</button>
+                    </div>
+                </form>
+                <SocialLogin />
+                <div className='flex flex-wrap items-center justify-between mt-5'>
+                    <p className='text-center text-lg'>Don't have any account? <Link to='/registration' className='text-secondary'>Sign Up</Link></p>
+                    <p className='text-lg text-secondary cursor-pointer'>Forgot Password?</p>
                 </div>
             </div>
-            <div className='p-20 w-full mx-auto'>
+            <div className='xl:px-20 lg:px-10 px-0 w-full mx-auto lg:order-2 order-1'>
                 <img src={LoginImg} alt="" />
             </div>
         </div>

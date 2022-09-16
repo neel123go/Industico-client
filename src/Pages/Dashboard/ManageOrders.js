@@ -80,12 +80,13 @@ export const ManageOrders = () => {
     }
 
     return (
-        <div className='w-full px-10 my-10 h-full'>
+        <div className='w-full mb-6 md:p-10 p-5 h-full'>
             <h1 className='text-3xl mb-2 text-neutral'>Manage Orders</h1>
-            <span className='w-52 h-1 bg-secondary block mb-16'></span>
+            <span className='w-52 h-1 bg-secondary block md:mb-16 mb-10'></span>
             {orders.length > 0 ? <table className="table w-full">
                 <thead className='text-center text-neutral rounded-lg bg-info border border-secondary' >
                     <tr className=''>
+                        <th className='bg-info'></th>
                         <th className='bg-info'>No</th>
                         <th className='bg-info'>Product</th>
                         <th className='bg-info'>User Info</th>
@@ -97,6 +98,7 @@ export const ManageOrders = () => {
                 </thead>
                 <tbody className='text-center text-neutral rounded-lg bg-info border border-secondary'>
                     {orders.map(order => <tr key={order?._id}>
+                        <td className='bg-info'></td>
                         <td className='bg-info'>{orders.indexOf(order) + 1}</td>
                         <td className='bg-info'>
                             <div className="flex items-center text-left space-x-3">
